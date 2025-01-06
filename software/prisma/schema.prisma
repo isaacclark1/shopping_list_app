@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Household {
+  id                 Int                 @id @default(autoincrement())
+  name               String
+  member             User[]
+  masterShoppingList MasterShoppingList?
+  category           Category[]
+  shoppingList       ShoppingList[]
+}
+
+model User {
+  id          Int        @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  username    String     @unique
+  password    String
+  household   Household? @relation(fields: [householdId], references: [id])
+  householdId Int
+  role        String     @default("user")
+}
+
+model MasterShoppingList {
+  id                     Int                      @id @default(autoincrement())
+  household              Household                @relation(fields: [householdId], references: [id])
+  householdId            Int                      @unique
+  masterShoppingListItem MasterShoppingListItem[]
+}
+
+model Category {
+  id                     Int                      @id @default(autoincrement())
+  description            String                   @unique
+  household              Household                @relation(fields: [householdId], references: [id])
+  householdId            Int
+  masterShoppingListItem MasterShoppingListItem[]
+  shoppingListItem       ShoppingListItem[]
+}
+
+model MasterShoppingListItem {
+  id                   Int                 @id @default(autoincrement())
+  description          String
+  category             Category            @relation(fields: [categoryId], references: [id])
+  categoryId           Int
+  masterShoppingList   MasterShoppingList? @relation(fields: [masterShoppingListId], references: [id])
+  masterShoppingListId Int?
+}
+
+model ShoppingList {
+  id               Int                @id @default(autoincrement())
+  createdAt        DateTime           @default(now())
+  household        Household          @relation(fields: [householdId], references: [id])
+  householdId      Int
+  shoppingListItem ShoppingListItem[]
+}
+
+model ShoppingListItem {
+  id             Int          @id @default(autoincrement())
+  description    String
+  isPurchased    Boolean      @default(false)
+  quantity       Int          @default(1) @db.SmallInt
+  category       Category     @relation(fields: [categoryId], references: [id])
+  categoryId     Int
+  shoppingList   ShoppingList @relation(fields: [shoppingListId], references: [id])
+  shoppingListId Int
+}
