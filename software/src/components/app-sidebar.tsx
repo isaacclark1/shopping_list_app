@@ -19,14 +19,14 @@ import { getAdmin } from "@/lib/client/auth/checkauth";
 const menuAllUsersItems = [
   {
     title: "Shopping Lists",
-    url: "/protected/shoppinglists",
+    url: "/",
     icon: List,
     isSidebarMenuAction: true,
     sidebarMenuActionIcon: Plus,
   },
   {
     title: "Master Shopping List",
-    url: "/protected/mastershoppinglist",
+    url: "/mastershoppinglist",
     icon: List,
   },
 ];
@@ -34,7 +34,7 @@ const menuAllUsersItems = [
 const menuAdminItems = [
   {
     title: "Create User",
-    url: "/protected/admin/createuser",
+    url: "/admin/createuser",
     icon: UserRoundPlus,
   },
 ];

@@ -92,7 +92,7 @@ async function Page() {
                               className="hover:cursor-pointer"
                               asChild
                             >
-                              <Link href={`/protected/shoppinglist/${list.id}`}>
+                              <Link href={`/shoppinglist/${list.id}`}>
                                 <List />
                                 Open
                               </Link>

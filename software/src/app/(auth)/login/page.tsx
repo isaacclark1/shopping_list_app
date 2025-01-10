@@ -6,7 +6,7 @@ async function Page() {
   const user = await getUserNoRedirect();
 
   if (user) {
-    redirect("/protected/shoppinglists");
+    redirect("/");
   }
 
   return (

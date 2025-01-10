@@ -26,11 +26,7 @@ import Status from "./status";
 import DeleteItemMenuButton from "./delete-item-menu-button";
 import AddItemButton from "./add-item-button";
 import { getUserRedirect } from "@/lib/server/auth/checkauth";
-
-import type { Session } from "next-auth";
-
 import ServerError from "@/lib/ServerError";
-import type { ShoppingListWithItems } from "@/lib/types/database/types";
 
 type PageProps = {
   params: Promise<{
