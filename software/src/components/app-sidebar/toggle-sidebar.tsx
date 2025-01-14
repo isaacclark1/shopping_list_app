@@ -1,8 +1,8 @@
 "use client";
 
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
-import { useSidebar } from "./ui/sidebar";
-import { Button } from "./ui/button";
+import { useSidebar } from "../ui/sidebar";
+import { Button } from "../ui/button";
 
 const ToggleSidebar: React.FC = () => {
   const { toggleSidebar, open } = useSidebar();

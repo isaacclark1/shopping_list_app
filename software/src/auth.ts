@@ -4,7 +4,6 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { signInSchema } from "@/lib/zod";
-import { redirect } from "next/navigation";
 
 declare module "next-auth" {
   /*
